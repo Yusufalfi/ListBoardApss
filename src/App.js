@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import Board from './components/Board';
+import Header from './components/Header';
+import { DataContex } from './context/store';
+import './sass/Header.scss';
+import './App.scss'
 
-function App() {
+
+const App = () => {
+  
+  const {store} = useContext(DataContex)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+        <div className='container'>
+          {store.listIds.map(id=> {
+            const data = store.lists[id]
+            // console.log(datas);
+            return <Board key={id} datas={data} />
+          })}
+        </div>
+  
     </div>
   );
 }
