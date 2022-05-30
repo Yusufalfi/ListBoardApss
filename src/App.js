@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { DataContex } from './context/store';
 import './sass/Header.scss';
 import './App.scss'
+import Button from './components/Button';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             // console.log(datas);
             return <Board key={id} datas={data} />
           })}
+          <Button list/>
         </div>
   
     </div>

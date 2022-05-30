@@ -3,23 +3,26 @@ import { DataContex } from '../context/store';
 import "../sass/Card.scss"
 import iconDel from "../assets/delete.png"
 
-const Card = ({item, id}) => {
-    const {cardDelete} = useContext(DataContex)
+const Card = ({item, id, indexs}) => {
+    const {cardDelete, cardEdit} = useContext(DataContex)
     const [edit, setEdit] = useState(false)
     const [text, setText] = useState(item.title)
     // fungsi tampil inpiut
     const isEdit = () => setEdit(true)
     // fungsi close input
-    const closeInput = () => setEdit(false)
+    const closeInput = () => {
+        cardEdit(id, item.id, indexs, text )
+        setEdit(false)
+    }
     // fungsi delete card 
     const deleteCard = () => {
-        console.log(id, item.id)
+        // console.log(id, item.id)
         cardDelete(id, item.id)
     }
     // handleChange input
-    // const handleChange = (e) => {
-    //     setText(e.target.value)
-    // }
+    const handleChange = (e) => {
+        setText(e.target.value)
+    }
   return (
     <div className='card-list'>
        { edit ? ( // jika true tampil form jika false tampil title
@@ -29,6 +32,7 @@ const Card = ({item, id}) => {
                  type="text"
                  onBlur={closeInput}
                  value={text} 
+                 onChange={handleChange}
                  />
             </form>
 

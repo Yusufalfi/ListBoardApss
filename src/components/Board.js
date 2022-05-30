@@ -3,6 +3,7 @@ import BoardTitle from './BoardTitle';
 import "../sass/Board.scss"
 import menu from "../assets/menu.png"
 import Card from './Card';
+import Button from './Button';
 
 const Board = ({datas}) => {
     return(
@@ -14,11 +15,15 @@ const Board = ({datas}) => {
                 </div>
             </div>
             <div>
-                {datas.cards.map((card) => 
-                    <Card key={card.id} item={card} id={datas.id} />
+                {datas.cards.map((card, index) => 
+                    <Card key={card.id}
+                          item={card} 
+                          id={datas.id}
+                          indexs={index} />
                 )}
+                <Button/>
             </div>
-            <button>add</button>
+           
         </div>
     )
 }
